@@ -1,0 +1,78 @@
+1.Create a table EMPLOYEE have the following fields (emp_id, name,city,dob,adhar_no) ?
+
+mysql> CREATE TABLE EMPLYEE(emp_id INT ,name VARCHAR(20),city VARCHAR(20),DOB DATE,adhar_no INT);
+
+mysql> desc EMPLYEE;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| emp_id   | int         | YES  |     | NULL    |       |
+| name     | varchar(20) | YES  |     | NULL    |       |
+| city     | varchar(20) | YES  |     | NULL    |       |
+| DOB      | date        | YES  |     | NULL    |       |
+| adhar_no | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+
+
+2.Create a table STUDENT have the fields(roll_no, name, age, address, gender)and add
+following constraints on it.
+Roll_no – Primary key
+Name – does not allow null values
+Age- must be in between (0-99), does not allow null values
+Gender- default value is ‘m’ ?
+
+
+
+mysql> CREATE TABLE STUDENTS (Roll_no INT PRIMARY KEY,Name VARCHAR(20) NOT NULL,Age INT NOT NULL CHECK(Age between 0 and 99),Gender CHAR(1) DEFAULT'm');
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc STUDENTS;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| Roll_no | int         | NO   | PRI | NULL    |       |
+| Name    | varchar(20) | NO   |     | NULL    |       |
+| Age     | int         | NO   |     | NULL    |       |
+| Gender  | char(1)     | YES  |     | m       |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+
+3. Create a temporary table STUDENT1 of STUDENT relation. 
+
+
+mysql> CREATE TEMPORARY TABLE STUDENT1 SELECT * FROM STUDENTS;
+Query OK, 0 rows affected (0.00 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC STUDENT1;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| Roll_no | int         | NO   |     | NULL    | NULL  |
+| Name    | varchar(20) | NO   |     | NULL    | NULL  |
+| Age     | int         | NO   |     | NULL    | NULL  |
+| Gender  | char(1)     | YES  |     | m       | NULL  |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+
+
+4. Create a duplicate table of EMPLOYEE. 
+
+mysql> CREATE TABLE EMPLYEE_1 SELECT * FROM EMPLYEE;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC EMPLYEE_1;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| emp_id   | int         | YES  |     | NULL    |       |
+| name     | varchar(20) | YES  |     | NULL    |       |
+| city     | varchar(20) | YES  |     | NULL    |       |
+| DOB      | date        | YES  |     | NULL    |       |
+| adhar_no | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
