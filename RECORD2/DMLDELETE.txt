@@ -49,7 +49,7 @@ mysql> SELECT * FROM INVOICE_ITEM;
 +--------+------+----------+
 12 rows in set (0.00 sec)
 
- 3. Delete the purchase details of product ‘pen’ in the in_id ‘101’. 
+ 3. Delete the purchase details of product ‘table’ in the in_id ‘101’. 
  
 mysql> DELETE FROM INVOICE_ITEM WHERE inv_id =101 AND p_id=(SELECT p_id FROM PRODUCT WHERE pname='table');
 Query OK, 1 row affected (0.01 sec)
