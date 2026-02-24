@@ -1,0 +1,411 @@
+
+1.INSERT VALUES IN EMPLOYEE TABLE
+
+mysql> desc employee;
++----------+---------------+------+-----+---------+-------+
+| Field    | Type          | Null | Key | Default | Extra |
++----------+---------------+------+-----+---------+-------+
+| emp_id   | int           | NO   | PRI | NULL    |       |
+| emp_name | varchar(20)   | NO   |     | NULL    |       |
+| address  | char(25)      | YES  |     | NULL    |       |
+| salary   | decimal(18,2) | YES  |     | NULL    |       |
++----------+---------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> INSERT INTO employee VALUES(1,'SINU','KARANTHUR',2000);
+Query OK, 1 row affected (0.00 sec)
+
+
+mysql> INSERT INTO employee VALUES(2,'SAHU','GOA',2300);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO employee VALUES(3,'NEIRA','PALAKAD',2350);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO employee VALUES(4,'ASWANI','KOCHI',2350);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO employee VALUES(5,'VANI','KARAMOOLA',2000);
+Query OK, 1 row affected (0.00 sec)
+
+
+mysql> SELECT * FROM employee;
++--------+----------+-----------+---------+
+| emp_id | emp_name | address   | salary  |
++--------+----------+-----------+---------+
+|      1 | SINU     | KARANTHUR | 2000.00 |
+|      2 | SAHU     | GOA       | 2300.00 |
+|      3 | NEIRA    | PALAKAD   | 2350.00 |
+|      4 | ASWANI   | KOCHI     | 2350.00 |
+|      5 | VANI     | KARAMOOLA | 2000.00 |
++--------+----------+-----------+---------+
+5 rows in set (0.00 sec)
+
+
+2.INSERT VALUES IN STUDENT TABLE
+
+mysql>  INSERT INTO STUDENT VALUES(1,'MANU',20,'M','KOZHIKODE');
+Query OK, 1 row affected (0.01 sec)
+
+mysql>  INSERT INTO STUDENT VALUES(2,'ANU',21,'f','KOZHIKODE');
+Query OK, 1 row affected (0.01 sec)
+
+mysql>  INSERT INTO STUDENT VALUES(3,'JANU',23,'f','KOLLAM');
+Query OK, 1 row affected (0.01 sec)
+
+mysql>  INSERT INTO STUDENT VALUES(4,'KESHU',22,m','KOTTAYAM');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  INSERT INTO STUDENT VALUES(5,'MANAL',22,'f','KOTTAYAM');
+Query OK, 1 row affected (0.01 sec)
+
+
+mysql> SELECT * FROM STUDENT;
++---------+-------+------+--------+-----------+
+| Roll_no | Name  | Age  | Gender | address   |
++---------+-------+------+--------+-----------+
+|       1 | MANU  |   20 | m      | KOZHIKODE |
+|       2 | ANU   |   21 | f      | KOZHIKODE |
+|       3 | JANU  |   23 | f      | KOLLAM    |
+|       4 | KESHU |   22 | m      | KOTTAYAM  |
+|       5 | MANAL |   22 | f      | KOTTAYAM  |
++---------+-------+------+--------+-----------+
+5 rows in set (0.00 sec)
+
+
+
+
+3.INSERT INTO INVOICE DATABASE
+
+ysql> DESC CUSTOMER;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| cust_id | int         | NO   | PRI | NULL    |       |
+| name    | varchar(20) | YES  |     | NULL    |       |
+| address | varchar(50) | YES  |     | NULL    |       |
+| city    | varchar(20) | YES  |     | NULL    |       |
+| ph_no   | varchar(10) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> INSERT INTO CUSTOMER VALUES(1,'Sahva','KUNNAMKULAM','TVM',9847657856);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO CUSTOMER VALUES(2,'SaNa','KUNMKULAM','TVM',9777657856);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO CUSTOMER VALUES(3,'Manu','THAMARAKULAM','CAICUT',9645357856);
+
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO CUSTOMER VALUES(4,'Aswani','MAYAND','KANNUR',4545357856);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO CUSTOMER VALUES(5,'Neira','Muthalam','KOLLAM0',4545357566);
+Query OK, 1 row affected (0.01 sec)
+mysql> INSERT INTO CUSTOMER (cust_id,name,address,city)VALUES(6,'Sinu','OVUNGARA','KOCHI');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO CUSTOMER (cust_id,name,address,city)VALUES(7,'Vinu','Manassery','PALAKKAD');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT * FROM CUSTOMER;
++---------+--------+--------------+----------+------------+
+| cust_id | name   | address      | city     | ph_no      |
++---------+--------+--------------+----------+------------+
+|       1 | Sahva  | KUNNAMKULAM  | TVM      | 9847657856 |
+|       2 | SaNa   | KUNMKULAM    | TVM      | 9777657856 |
+|       3 | Manu   | THAMARAKULAM | CAICUT   | 9645357856 |
+|       4 | Aswani | MAYAND       | KANNUR   | 4545357856 |
+|       5 | Neira  | Muthalam     | KOLLAM0  | 4545357566 |
+|       6 | Sinu   | OVUNGARA     | KOCHI    | NULL       |
+|       7 | Vinu   | Manassery    | PALAKKAD | NULL       |
++---------+--------+--------------+----------+------------+
+7 rows in set (0.00 sec)
+
+
+
+mysql> DESC PRODUCT;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| p_id  | int         | NO   | PRI | NULL    |       |
+| pname | varchar(20) | YES  |     | NULL    |       |
+| price | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT INTO PRODUCT VALUES(1,'soap',25);
+Query OK, 1 row affected (0.00 sec)
+mysql> INSERT INTO PRODUCT VALUES(2,'cup',15);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO PRODUCT VALUES(3,'chair',50);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO PRODUCT VALUES(4,'pan',10);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO PRODUCT VALUES(5,'book',22);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO PRODUCT VALUES(6,'pen',5);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO PRODUCT VALUES(7,'table',99);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM PRODUCT;
++------+-------+-------+
+| p_id | pname | price |
++------+-------+-------+
+|    1 | soap  |    25 |
+|    2 | cup   |    15 |
+|    3 | chair |    50 |
+|    4 | pan   |    10 |
+|    5 | book  |    22 |
+|    6 | pen   |     5 |
+|    7 | table |    99 |
++------+-------+-------+
+7 rows in set (0.00 sec)
+
+mysql> INSERT INTO INVOICE_MASTER VALUES(100,1,'2025-04-25');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO INVOICE_MASTER VALUES(101,5,'2025-05-25');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO INVOICE_MASTER VALUES(102,4,'2025-06-27');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO INVOICE_MASTER VALUES(103,2,'2025-03-27');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO INVOICE_MASTER VALUES(104,1,'2025-03-28');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO INVOICE_MASTER VALUES(105,3,'2025-10-28');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO INVOICE_MASTER VALUES(106,7,'2025-10-02');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO INVOICE_MASTER VALUES(107,6,'2025-11-15');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO INVOICE_MASTER VALUES(108,4,'2025-11-25');
+Query OK, 1 row affected (0.01 sec)
+mysql> INSERT INTO INVOICE_MASTER VALUES(109,4,'2025-08-25');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO INVOICE_MASTER VALUES(110,1,'2025-09-25');
+Query OK, 1 row affected (0.01 sec)
+mysql> SELECT * FROM INVOICE_MASTER;
++--------+---------+------------+
+| inv_id | cust_id | inv_date   |
++--------+---------+------------+
+|    100 |       1 | 2025-04-25 |
+|    101 |       5 | 2025-05-25 |
+|    102 |       4 | 2025-06-27 |
+|    103 |       2 | 2025-03-27 |
+|    104 |       1 | 2025-03-28 |
+|    105 |       3 | 2025-10-28 |
+|    106 |       7 | 2025-10-02 |
+|    107 |       6 | 2025-11-15 |
+|    108 |       4 | 2025-11-25 |
+|    109 |       4 | 2025-08-25 |
+|    110 |       1 | 2025-09-25 |
++--------+---------+------------+
+11 rows in set (0.00 sec)
+
+
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(100,1,2);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(101,7,5);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(102,1,1);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(103,3,6);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(104,3,2);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(105,2,4);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(106,4,7);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(107,1,2);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(108,2,1);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(109,3,5);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(110,3,1);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(107,3,2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(101,1,5);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(109,5,5);
+Query OK, 1 row affected (0.01 sec)
+mysql> INSERT INTO INVOICE_ITEM VALUES(109,2,10);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(108,1,8);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO INVOICE_ITEM VALUES(101,1,9);
+Query OK, 1 row affected (0.00 sec)
+mysql> SELECT * FROM INVOICE_ITEM;
++--------+------+----------+
+| inv_id | p_id | quantity |
++--------+------+----------+
+|    100 |    1 |        2 |
+|    101 |    7 |        5 |
+|    102 |    1 |        1 |
+|    103 |    3 |        6 |
+|    104 |    3 |        2 |
+|    105 |    2 |        4 |
+|    106 |    4 |        7 |
+|    107 |    1 |        2 |
+|    108 |    2 |        1 |
+|    109 |    3 |        5 |
+|    110 |    3 |        1 |
+|    107 |    3 |        2 |
+|    101 |    1 |        5 |
+|    109 |    5 |        5 |
+|    109 |    2 |       10 |
+|    108 |    1 |        8 |
+|    101 |    1 |        9 |
++--------+------+----------+
+17 rows in set (0.00 sec)
+
+DML -UPDATE
+
+1
+mysql> UPDATE PRODUCT SET price=35 WHERE pname='soap';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+
+mysql> SELECT * FROM PRODUCT;
++------+-------+-------+
+| p_id | pname | price |
++------+-------+-------+
+|    1 | soap  |    35 |
+|    2 | cup   |    15 |
+|    3 | chair |    50 |
+|    4 | pan   |    10 |
+|    5 | book  |    22 |
+|    6 | pen   |     5 |
+|    7 | table |    99 |
++------+-------+-------+
+7 rows in set (0.00 sec)
+
+2.
+mysql> UPDATE CUSTOMER SET city='KOZHIKODE' WHERE name='Manu';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM CUSTOMER;
++---------+--------+--------------+-----------+------------+
+| cust_id | name   | address      | city      | ph_no      |
++---------+--------+--------------+-----------+------------+
+|       1 | Sahva  | KUNNAMKULAM  | TVM       | 9847657856 |
+|       2 | SaNa   | KUNMKULAM    | TVM       | 9777657856 |
+|       3 | Manu   | THAMARAKULAM | KOZHIKODE | 9645357856 |
+|       4 | Aswani | MAYAND       | KANNUR    | 4545357856 |
+|       5 | Neira  | Muthalam     | KOLLAM0   | 4545357566 |
+|       6 | Sinu   | OVUNGARA     | KOCHI     | NULL       |
+|       7 | Vinu   | Manassery    | PALAKKAD  | NULL       |
++---------+--------+--------------+-----------+------------+
+7 rows in set (0.00 sec)
+ 
+ 
+ 3.
+ mysql> UPDATE PRODUCT SET price=price*1.02;
+Query OK, 3 rows affected (0.00 sec)
+Rows matched: 7  Changed: 3  Warnings: 0
+
+
+mysql> SELECT * FROM PRODUCT;
++------+-------+-------+
+| p_id | pname | price |
++------+-------+-------+
+|    1 | soap  |    36 |
+|    2 | cup   |    15 |
+|    3 | chair |    51 |
+|    4 | pan   |    10 |
+|    5 | book  |    22 |
+|    6 | pen   |     5 |
+|    7 | table |   101 |
++------+-------+-------+
+7 rows in set (0.00 sec)
+
+
+4.
+mysql> UPDATE CUSTOMER  SET address='MAYAMAL',city='KOTTAYAM',ph_no=9987453678  WHERE cust_id=4;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+
+mysql> SELECT * FROM CUSTOMER;
++---------+--------+--------------+-----------+------------+
+| cust_id | name   | address      | city      | ph_no      |
++---------+--------+--------------+-----------+------------+
+|       1 | Sahva  | KUNNAMKULAM  | TVM       | 9847657856 |
+|       2 | SaNa   | KUNMKULAM    | TVM       | 9777657856 |
+|       3 | Manu   | THAMARAKULAM | KOZHIKODE | 9645357856 |
+|       4 | Aswani | MAYAMAL      | KOTTAYAM  | 9987453678 |
+|       5 | Neira  | Muthalam     | KOLLAM0   | 4545357566 |
+|       6 | Sinu   | OVUNGARA     | KOCHI     | NULL       |
+|       7 | Vinu   | Manassery    | PALAKKAD  | NULL       |
++---------+--------+--------------+-----------+------------+
+7 rows in set (0.00 sec)
+
+
+5.
+mysql> UPDATE INVOICE_ITEM SET quantity=7 WHERE inv_id=101;
+Query OK, 3 rows affected (0.01 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+
+mysql> SELECT * FROM INVOICE_ITEM;
++--------+------+----------+
+| inv_id | p_id | quantity |
++--------+------+----------+
+|    100 |    1 |        2 |
+|    101 |    7 |        7 |
+|    102 |    1 |        1 |
+|    103 |    3 |        6 |
+|    104 |    3 |        2 |
+|    105 |    2 |        4 |
+|    106 |    4 |        7 |
+|    107 |    1 |        2 |
+|    108 |    2 |        1 |
+|    109 |    3 |        5 |
+|    110 |    3 |        1 |
+|    107 |    3 |        2 |
+|    101 |    1 |        7 |
+|    109 |    5 |        5 |
+|    109 |    2 |       10 |
+|    108 |    1 |        8 |
+|    101 |    1 |        7 |
++--------+------+----------+
+17 rows in set (0.00 sec)
+
+
