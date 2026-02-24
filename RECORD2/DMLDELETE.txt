@@ -1,6 +1,6 @@
 DML DELETE
 
-1. Delete the record of customer id ‘10001’. 
+1. Delete the record of customer id ‘1’. 
 
 mysql> DELETE FROM INVOICE_ITEM WHERE inv_id IN(SELECT inv_id FROM INVOICE_MASTER WHERE cust_id=1);
 Query OK, 3 rows affected (0.01 sec)
@@ -74,7 +74,7 @@ mysql> SELECT * FROM INVOICE_ITEM;
 +--------+------+----------+
 11 rows in set (0.00 sec)
 
- 4. Delete details of employees who does not have phone number. 
+ 4. Delete details of customer who does not have phone number. 
 
 mysql> DELETE FROM INVOICE_ITEM WHERE inv_id IN (SELECT inv_id FROM INVOICE_MASTER WHERE cust_id IN ( SELECT cust_id FROM CUSTOMER WHERE ph_no IS NULL));
 
@@ -106,7 +106,7 @@ Empty set (0.00 sec)
 
  6. Delete Invoice details of a particular customer. 
  
-mysql> DELETE FROM INVOICE_ITEM WHERE inv_id IN (SELECT inv_id FROM INVOICE_MASTER WHERE cust_id = 3);
+mysql> DELETE FROM INVOICE_ITEM WHERE inv_id IN (SELECT inv_id FROM INVOICE_MASTER WHERE name= Manu);
 Query OK, 1 row affected (0.00 sec)
 
 mysql> SELECT * FROM INVOICE_ITEM;
@@ -124,7 +124,7 @@ mysql> SELECT * FROM INVOICE_ITEM;
 7 rows in set (0.00 sec)
 
 
-mysql> DELETE FROM INVOICE_MASTER WHERE cust_id = 1;
+mysql> DELETE FROM INVOICE_MASTER WHERE name = Manu;
 
 mysql> SELECT * FROM INVOICE_MASTER;
 +--------+---------+------------+
