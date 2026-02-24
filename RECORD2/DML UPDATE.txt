@@ -67,17 +67,25 @@ mysql> SELECT * FROM PRODUCT;
 
  4. Change the address, city, phone number of a particular customer. 
  
- mysql> UPDATE CUSTOMER SET address = 'MAYAMAL',city = 'KOTTAYAM',ph_no = '9987453678' WHERE name = 'Aswani';
+mysql> UPDATE CUSTOMER  SET address='MAYAMAL',city='KOTTAYAM',ph_no=9987453678  WHERE cust_id=4;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
 
+
+mysql> SELECT * FROM CUSTOMER;
 +---------+--------+--------------+-----------+------------+
 | cust_id | name   | address      | city      | ph_no      |
 +---------+--------+--------------+-----------+------------+
+|       1 | Sahva  | KUNNAMKULAM  | TVM       | 9847657856 |
 |       2 | SaNa   | KUNMKULAM    | TVM       | 9777657856 |
 |       3 | Manu   | THAMARAKULAM | KOZHIKODE | 9645357856 |
 |       4 | Aswani | MAYAMAL      | KOTTAYAM  | 9987453678 |
 |       5 | Neira  | Muthalam     | KOLLAM0   | 4545357566 |
+|       6 | Sinu   | OVUNGARA     | KOCHI     | NULL       |
+|       7 | Vinu   | Manassery    | PALAKKAD  | NULL       |
 +---------+--------+--------------+-----------+------------+
-4 rows in set (0.05 sec)
+7 rows in set (0.00 sec)
+
 
  5. Change the quantity of a purchased product of inv_id ‘101’ 
 mysql> UPDATE INVOICE_ITEM SET quantity=7 WHERE inv_id=101;
