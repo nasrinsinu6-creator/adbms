@@ -1,0 +1,158 @@
+DML DELETE
+
+1. Delete the record of customer id ‘1’. 
+
+mysql> DELETE FROM INVOICE_ITEM WHERE inv_id IN(SELECT inv_id FROM INVOICE_MASTER WHERE cust_id=1);
+Query OK, 3 rows affected (0.01 sec)
+
+mysql> DELETE FROM INVOICE_MASTER WHERE cust_id =1;
+Query OK, 3 rows affected (0.00 sec)
+
+mysql> DELETE FROM CUSTOMER WHERE cust_id=1;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT * FROM CUSTOMER;
++---------+--------+--------------+-----------+------------+
+| cust_id | name   | address      | city      | ph_no      |
++---------+--------+--------------+-----------+------------+
+|       2 | SaNa   | KUNMKULAM    | TVM       | 9777657856 |
+|       3 | Manu   | THAMARAKULAM | KOZHIKODE | 9645357856 |
+|       4 | Aswani | MAYAMAL      | KOTTAYAM  | 9987453678 |
+|       5 | Neira  | Muthalam     | KOLLAM0   | 4545357566 |
+|       6 | Sinu   | OVUNGARA     | KOCHI     | NULL       |
+|       7 | Vinu   | Manassery    | PALAKKAD  | NULL       |
++---------+--------+--------------+-----------+------------+
+6 rows in set (0.00 sec)
+
+ 2. Delete all purchase details of items its quantity less than 2. 
+
+
+mysql> DELETE FROM INVOICE_ITEM WHERE quantity<2;
+Query OK, 2 rows affected (0.01 sec)
+
+mysql> SELECT * FROM INVOICE_ITEM;
++--------+------+----------+
+| inv_id | p_id | quantity |
++--------+------+----------+
+|    101 |    7 |        7 |
+|    103 |    3 |        6 |
+|    105 |    2 |        4 |
+|    106 |    4 |        7 |
+|    107 |    1 |        2 |
+|    109 |    3 |        5 |
+|    107 |    3 |        2 |
+|    101 |    1 |        7 |
+|    109 |    5 |        5 |
+|    109 |    2 |       10 |
+|    108 |    1 |        8 |
+|    101 |    1 |        7 |
++--------+------+----------+
+12 rows in set (0.00 sec)
+
+ 3. Delete the purchase details of product ‘table’ in the in_id ‘101’. 
+ 
+mysql> DELETE FROM INVOICE_ITEM WHERE inv_id =101 AND p_id=(SELECT p_id FROM PRODUCT WHERE pname='table');
+Query OK, 1 row affected (0.01 sec)
+
+
+
+mysql> SELECT * FROM INVOICE_ITEM;
++--------+------+----------+
+| inv_id | p_id | quantity |
++--------+------+----------+
+|    103 |    3 |        6 |
+|    105 |    2 |        4 |
+|    106 |    4 |        7 |
+|    107 |    1 |        2 |
+|    109 |    3 |        5 |
+|    107 |    3 |        2 |
+|    101 |    1 |        7 |
+|    109 |    5 |        5 |
+|    109 |    2 |       10 |
+|    108 |    1 |        8 |
+|    101 |    1 |        7 |
++--------+------+----------+
+11 rows in set (0.00 sec)
+
+ 4. Delete details of customer who does not have phone number. 
+
+mysql> DELETE FROM INVOICE_ITEM WHERE inv_id IN (SELECT inv_id FROM INVOICE_MASTER WHERE cust_id IN ( SELECT cust_id FROM CUSTOMER WHERE ph_no IS NULL));
+
+
+mysql> DELETE FROM INVOICE_MASTER WHERE cust_id IN ( SELECT cust_id FROM CUSTOMER WHERE ph_no IS NULL);
+
+mysql> DELETE FROM CUSTOMER WHERE ph_no IS NULL;
+
+
+mysql> SELECT * FROM CUSTOMER;
++---------+--------+--------------+-----------+------------+
+| cust_id | name   | address      | city      | ph_no      |
++---------+--------+--------------+-----------+------------+
+|       2 | SaNa   | KUNMKULAM    | TVM       | 9777657856 |
+|       3 | Manu   | THAMARAKULAM | KOZHIKODE | 9645357856 |
+|       4 | Aswani | MAYAMAL      | KOTTAYAM  | 9987453678 |
+|       5 | Neira  | Muthalam     | KOLLAM0   | 4545357566 |
++---------+--------+--------------+-----------+------------+
+4 rows in set (0.00 sec)
+
+ 5. Delete all records from STUDENT table. 
+
+mysql> DELETE FROM STUDENT;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT * FROM STUDENT;
+Empty set (0.00 sec)
+
+
+ 6. Delete Invoice details of a particular customer. 
+ 
+DELETE FROM INVOICE_ITEM WHERE inv_id IN (SELECT inv_id FROM INVOICE_MASTER WHERE cust_id = (SELECT cust_id FROM CUSTOMER WHERE name = 'Manu'));
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT * FROM INVOICE_ITEM;
++--------+------+----------+
+| inv_id | p_id | quantity |
++--------+------+----------+
+|    103 |    3 |        6 |
+|    109 |    3 |        5 |
+|    101 |    1 |        7 |
+|    109 |    5 |        5 |
+|    109 |    2 |       10 |
+|    108 |    1 |        8 |
+|    101 |    1 |        7 |
++--------+------+----------+
+7 rows in set (0.00 sec)
+
+
+mysql>DELETE FROM INVOICE_MASTER WHERE cust_id = (SELECT cust_id FROM CUSTOMER WHERE name = 'Manu');
+
+
+mysql> SELECT * FROM INVOICE_MASTER;
++--------+---------+------------+
+| inv_id | cust_id | inv_date   |
++--------+---------+------------+
+|    101 |       5 | 2025-05-25 |
+|    102 |       4 | 2025-06-27 |
+|    103 |       2 | 2025-03-27 |
+|    108 |       4 | 2025-11-25 |
+|    109 |       4 | 2025-08-25 |
++--------+---------+------------+
+6 rows in set (0.00 sec)
+
+
+ 7. Delete the first two records of INVOICE_ITEM table its purchase quantity is high.
+ 
+mysql> DELETE FROM INVOICE_ITEM LIMIT 2;
+Query OK, 2 rows affected (0.00 sec)
+
+mysql> SELECT * FROM INVOICE_ITEM;
++--------+------+----------+
+| inv_id | p_id | quantity |
++--------+------+----------+
+|    101 |    1 |        7 |
+|    109 |    5 |        5 |
+|    109 |    2 |       10 |
+|    108 |    1 |        8 |
+|    101 |    1 |        7 |
++--------+------+----------+
+5 rows in set (0.00 sec)
