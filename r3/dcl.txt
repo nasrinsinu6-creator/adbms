@@ -1,0 +1,48 @@
+
+ Create two users user1, user2 
+
+
+ 1. GRANT:   Give insert and select privilege to user 1 on customer table in the invoice database.
+
+
+mysql> CREATE USER 'user1'@'localhost' IDENTIFIED BY 'Pass@1234';
+Query OK, 0 rows affected (0.02 sec)
+
+
+mysql>  GRANT INSERT,SELECT ON invoice.CUSTOMER TO 'user1'@'localhost';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SHOW GRANTS FOR 'user1'@'localhost';
++---------------------------------------------------------------------+
+| Grants for user1@localhost                                          |
++---------------------------------------------------------------------+
+| GRANT USAGE ON *.* TO `user1`@`localhost`                           |
+| GRANT SELECT, INSERT ON `invoice`.`CUSTOMER` TO `user1`@`localhost` |
++---------------------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+
+Give update and delete privilege to user 2 on all tables in the invoice database.
+
+
+mysql> CREATE USER 'user2'@'localhost'IDENTIFIED BY'Pass@1234';
+Query OK, 0 rows affected (0.03 sec)
+
+mysql>  GRANT UPDATE,DELETE ON invoice.* TO 'user2'@'localhost';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql>  SHOW GRANTS FOR 'user2'@'localhost';
++------------------------------------------------------------+
+| Grants for user2@localhost                                 |
++------------------------------------------------------------+
+| GRANT USAGE ON *.* TO `user2`@`localhost`                  |
+| GRANT UPDATE, DELETE ON `invoice`.* TO `user2`@`localhost` |
++------------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+ 2. REVOKE:   Remove delete privilege of user 2.
+ 
+mysql> REVOKE DELETE ON invoice.* FROM 'user2'@'localhost';
+Query OK, 0 rows affected (0.00 sec)
+
+

@@ -1,0 +1,99 @@
+1.COMMIT
+
+mysql> set autocommit=0;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> insert into customer(age,name)values(21,'sinu');
+Query OK, 1 row affected (0.12 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+
+2.ROLLBACK
+
+mysql> set autocommit=0;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> insert into customer values(23,'sahva');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from customer;
++------+-------+
+| age  | name  |
++------+-------+
+|   21 | sinu |
+|   23 | sahva  |
++------+-------+
+2 rows in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> 
+select * from customer;
++------+-------+
+| age  | name  |
++------+-------+
+|   21 | sinu |
++------+-------+
+1 row in set (0.00 sec)
+
+3.SAVEPOINT
+
+mysql> insert into customer values(25,'aswani');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into customer values(29,'naira');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> update customer set age=33 where name='aswani';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> savepoint sp1;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> insert into customer values(24,'nafla');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> savepoint sp2;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> delete from customer where age=21;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> rollback to sp2;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from customer;
++------+--------+
+| age  | name   |
++------+--------+
+|   21 | sinu   |
+|   23 | sahva  |
+|   33 | aswani |
+|   29 | naira  |
+|   24 | nafla  |
++------+--------+
+5 rows in set (0.00 sec)
+
+mysql> rollback to sp1;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from customer;
++------+--------+
+| age  | name   |
++------+--------+
+|   21 | sinu   |
+|   23 | sahva  |
+|   33 | aswani |
+|   29 | naira  |
++------+--------+
+4 rows in set (0.00 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.11 sec)
+
+
+
