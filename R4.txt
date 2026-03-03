@@ -1,0 +1,56 @@
+1. List all invoice items, avoid duplicates.    
+
+
+mysql> select distinct inv_id from INVOICE_ITEM;
++--------+
+| inv_id |
++--------+
+|    101 |
+|    108 |
+|    109 |
++--------+
+3 rows in set (0.01 sec)
+
+2. List the customer details who not live in ‘tvm'
+
+mysql>  select * from CUSTOMER where city !='TVM';
++---------+--------+--------------+-----------+------------+
+| cust_id | name   | address      | city      | ph_no      |
++---------+--------+--------------+-----------+------------+
+|       3 | Manu   | THAMARAKULAM | KOZHIKODE | 9645357856 |
+|       4 | Aswani | MAYAMAL      | KOTTAYAM  | 9987453678 |
+|       5 | Neira  | Muthalam     | KOLLAM0   | 4545357566 |
++---------+--------+--------------+-----------+------------+
+3 rows in set (0.00 sec)
+
+
+
+3. Display the customer details sorted in ascending by city and descending by names.
+
+mysql> select * from CUSTOMER order by city asc,name desc;
++---------+--------+--------------+-----------+------------+
+| cust_id | name   | address      | city      | ph_no      |
++---------+--------+--------------+-----------+------------+
+|       5 | Neira  | Muthalam     | KOLLAM0   | 4545357566 |
+|       4 | Aswani | MAYAMAL      | KOTTAYAM  | 9987453678 |
+|       3 | Manu   | THAMARAKULAM | KOZHIKODE | 9645357856 |
+|       2 | SaNa   | KUNMKULAM    | TVM       | 9777657856 |
++---------+--------+--------------+-----------+------------+
+4 rows in set (0.00 sec)
+
+
+
+4. Find the customer names who have ‘e’ or ‘a’ in them and at least 3 characters in length.
+
+mysql> select name from CUSTOMER WHERE (name LIKE '%a%' OR name LIKE '%e%') AND
+name LIKE '___%';
++--------+
+| name   |
++--------+
+| SaNa   |
+| Manu   |
+| Aswani |
+| Neira  |
++--------+
+4 rows in set (0.00 sec)
+
