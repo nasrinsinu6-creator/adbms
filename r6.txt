@@ -1,0 +1,73 @@
+mysql> create table course(course_id int primary key,course_name varchar(20));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> create table department(dep_id int primary key,dep_name varchar(20),course_id int ,foreign key(course_id) references course(course_id));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> create table student(id int primary key,name varchar(20),dep_id int,foreign key(dep_id) references department(dep_id));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc student;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int         | NO   | PRI | NULL    |       |
+| name   | varchar(20) | YES  |     | NULL    |       |
+| dep_id | int         | YES  | MUL | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> desc department;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| dep_id    | int         | NO   | PRI | NULL    |       |
+| dep_name  | varchar(20) | YES  |     | NULL    |       |
+| course_id | int         | YES  | MUL | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+
+mysql> desc course;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| course_id   | int         | NO   | PRI | NULL    |       |
+| course_name | varchar(20) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> insert into course values(101,'MCA');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into course values(102,'MBA');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into course values(103,'BBA');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into course values(104,'BCA');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into course values(105,'BA');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into course values(106,'MA');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from course;
++-----------+-------------+
+| course_id | course_name |
++-----------+-------------+
+|       101 | MCA         |
+|       102 | MBA         |
+|       103 | BBA         |
+|       104 | BCA         |
+|       105 | BA          |
+|       106 | MA          |
++-----------+-------------+
+6 rows in set (0.00 sec)
+
+
+
+
