@@ -29,18 +29,17 @@ mysql> SELECT CUSTOMER.name, PRODUCT.pname, INVOICE_MASTER.inv_date FROM CUSTOME
 purchased items.
 
 
-mysql> SELECT * FROM CUSTOMER LEFT OUTER JOIN INVOICE_MASTER ON CUSTOMER.cust_id = INVOICE_MASTER.cust_id;
-+---------+--------+--------------+-----------+------------+--------+---------+------------+
-| cust_id | name   | address      | city      | ph_no      | inv_id | cust_id | inv_date   |
-+---------+--------+--------------+-----------+------------+--------+---------+------------+
-|       2 | SaNa   | KUNMKULAM    | TVM       | 9777657856 |    103 |       2 | 2025-03-27 |
-|       3 | Manu   | THAMARAKULAM | KOZHIKODE | 9645357856 |    105 |       3 | 2025-10-28 |
-|       4 | Aswani | MAYAMAL      | KOTTAYAM  | 9987453678 |    102 |       4 | 2025-06-27 |
-|       4 | Aswani | MAYAMAL      | KOTTAYAM  | 9987453678 |    108 |       4 | 2025-11-25 |
-|       4 | Aswani | MAYAMAL      | KOTTAYAM  | 9987453678 |    109 |       4 | 2025-08-25 |
-|       5 | Neira  | Muthalam     | KOLLAM0   | 4545357566 |    101 |       5 | 2025-05-25 |
-|       6 | Ravi   | Palayam      | TVM       | 9876543210 |   NULL |    NULL | NULL       |
-+---------+--------+--------------+-----------+------------+--------+---------+------------+
+mysql> SELECT CUSTOMER.name,CUSTOMER.cust_id,INVOICE_MASTER.inv_id FROM CUSTOMER LEFT OUTER JOIN INVOICE_MASTER ON CUSTOMER.cust_id = INVOICE_MASTER.cust_id;
++--------+---------+--------+
+| name   | cust_id | inv_id |
++--------+---------+--------+
+| SaNa   |       2 |    103 |
+| Manu   |       3 |    105 |
+| Aswani |       4 |    102 |
+| Aswani |       4 |    108 |
+| Aswani |       4 |    109 |
+| Neira  |       5 |    101 |
+| Ravi   |       6 |   NULL |
++--------+---------+--------+
 7 rows in set (0.00 sec)
-
 
