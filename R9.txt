@@ -1,0 +1,52 @@
+1. Display customer details who doesn’t have phone number and lives in ‘clt’ city (use logical operators) 
+
+
+mysql> select * from CUSTOMER;
++---------+--------+--------------+-----------+------------+
+| cust_id | name   | address      | city      | ph_no      |
++---------+--------+--------------+-----------+------------+
+|       2 | SaNa   | KUNMKULAM    | TVM       | 9777657856 |
+|       3 | Manu   | THAMARAKULAM | KOZHIKODE | 9645357856 |
+|       4 | Aswani | MAYAMAL      | KOTTAYAM  | 9987453678 |
+|       5 | Neira  | Muthalam     | KOLLAM0   | 4545357566 |
+|       6 | Ravi   | Palayam      | TVM       | 9876543210 |
+|       7 | mina   | Manchery     | clt       | NULL       |
++---------+--------+--------------+-----------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from CUSTOMER where ph_no is NULL AND city='clt';
++---------+------+----------+------+-------+
+| cust_id | name | address  | city | ph_no |
++---------+------+----------+------+-------+
+|       7 | mina | Manchery | clt  | NULL  |
++---------+------+----------+------+-------+
+1 row in set (0.00 sec)
+
+
+
+
+2. List the product names if it finds any records in the invoice items table has quantity =3 (use special operators)
+
+
+mysql> select * from INVOICE_ITEM;
++--------+------+----------+
+| inv_id | p_id | quantity |
++--------+------+----------+
+|    101 |    1 |        7 |
+|    109 |    5 |        5 |
+|    109 |    2 |       10 |
+|    108 |    1 |        8 |
+|    101 |    1 |        7 |
++--------+------+----------+
+5 rows in set (0.00 sec)
+
+mysql> select pname from PRODUCT where p_id in(select p_id from INVOICE_ITEM where quantity=5);
++-------+
+| pname |
++-------+
+| book  |
++-------+
+1 row in set (0.00 sec)
+
+
+
