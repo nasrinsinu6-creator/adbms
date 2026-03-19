@@ -1,0 +1,178 @@
+	
+1. Write a MongoDB query to sort customer details in ascending order of their name. 
+
+INVOICE> db.customer.find().sort({name:1})
+[
+  {
+    _id: ObjectId('69b7ab53ee1b6e231d89b047'),
+    name: 'anu',
+    city: 'tvm',
+    phone: 8657432456
+  },
+  {
+    _id: ObjectId('69b7ab53ee1b6e231d89b049'),
+    name: 'joji',
+    city: 'calicut',
+    phone: 6574332766
+  },
+  {
+    _id: ObjectId('69b7ab53ee1b6e231d89b04a'),
+    name: 'vidhu',
+    city: 'ekm',
+    phone: 5674344567
+  },
+  {
+    _id: ObjectId('69b7ab53ee1b6e231d89b048'),
+    name: 'vinu',
+    city: 'kottayam',
+    phone: 9564738254
+  }
+]
+
+ 2. Write a MongoDB query to count number of customers in each city. 
+ 
+ INVOICE> db.customer.find()
+[
+  {
+    _id: ObjectId('69b7ab53ee1b6e231d89b047'),
+    name: 'anu',
+    city: 'tvm',
+    phone: 8657432456
+  },
+  {
+    _id: ObjectId('69b7ab53ee1b6e231d89b048'),
+    name: 'vinu',
+    city: 'kottayam',
+    phone: 9564738254
+  },
+  {
+    _id: ObjectId('69b7ab53ee1b6e231d89b049'),
+    name: 'joji',
+    city: 'calicut',
+    phone: 6574332766
+  },
+  {
+    _id: ObjectId('69b7ab53ee1b6e231d89b04a'),
+    name: 'vidhu',
+    city: 'ekm',
+    phone: 5674344567
+  }
+]
+
+ 
+ INVOICE> db.customer.aggregate([{$group:{_id:"$city",total:{$sum:1}}}]);
+[
+  { _id: 'ekm', total: 1 },
+  { _id: 'kottayam', total: 1 },
+  { _id: 'tvm', total: 1 },
+  { _id: 'calicut', total: 1 }
+]
+
+ 3. Write a MongoDB query to find minimum and maximum price in each pname. 
+ 
+ INVOICE> db.product.aggregate([{$group:{_id:"$pname",max_price:{$max:"$price"},min_price:{$min:"$price"}}}]);
+INVOICE> db.product.find()
+[
+  {
+    _id: ObjectId('69b7abe0ee1b6e231d89b04b'),
+    pname: 'chair',
+    price: 200
+  },
+  { _id: ObjectId('69b7abe0ee1b6e231d89b04c'), pname: 'pen', price: 5 },
+  {
+    _id: ObjectId('69b7abe0ee1b6e231d89b04d'),
+    pname: 'soap',
+    price: 45
+  },
+  {
+    _id: ObjectId('69b7abe0ee1b6e231d89b04e'),
+    pname: 'mouse',
+    price: 50
+  },
+  {
+    _id: ObjectId('69b8f74772e2d3436089b03e'),
+    pname: 'pen',
+    price: 10
+  }
+]
+INVOICE> db.product.aggregate([{$group:{_id:"$pname",max_price:{$max:"$price"},min_price:{$min:"$price"}}}]);
+[
+  { _id: 'pen', max_price: 10, min_price: 5 },
+  { _id: 'mouse', max_price: 50, min_price: 50 },
+  { _id: 'chair', max_price: 200, min_price: 200 },
+  { _id: 'soap', max_price: 45, min_price: 45 }
+]
+
+
+ 
+ 4. Write a MongoDB query using the $match stage to retrieve all customer documents whose
+customer_name starts with the letter “v”.
+
+
+INVOICE> db.customer.aggregate([{$match:{name:{$regex:"^v"}}}])
+[
+  {
+    _id: ObjectId('69b7ab53ee1b6e231d89b048'),
+    name: 'vinu',
+    city: 'kottayam',
+    phone: 9564738254
+  },
+  {
+    _id: ObjectId('69b7ab53ee1b6e231d89b04a'),
+    name: 'vidhu',
+    city: 'ekm',
+    phone: 5674344567
+  }
+]
+
+
+
+5. Write a query using $lookup to join CUSTOMER and PRODUCT collections and display only
+customer name, product name, and price.
+
+db.customer.aggregate([
+   {
+    $lookup: {
+       from: "product",
+     localField: "product_id",
+       foreignField: "product_id",
+       as: "product_info"
+     }
+   },
+   {
+     $unwind: "$product_info"
+   },
+   {
+     $project: {
+       _id: 0,
+       name: "$name",
+       pname: "$product_info.pname",
+       price: "$product_info.price"
+     }
+   }
+ ]);
+ 
+ 
+ [
+  { name: 'anu', pname: 'chair', price: 200 },
+  { name: 'anu', pname: 'pen', price: 5 },
+  { name: 'anu', pname: 'soap', price: 45 },
+  { name: 'anu', pname: 'mouse', price: 50 },
+  { name: 'anu', pname: 'pen', price: 10 },
+  { name: 'vinu', pname: 'chair', price: 200 },
+  { name: 'vinu', pname: 'pen', price: 5 },
+  { name: 'vinu', pname: 'soap', price: 45 },
+  { name: 'vinu', pname: 'mouse', price: 50 },
+  { name: 'vinu', pname: 'pen', price: 10 },
+  { name: 'joji', pname: 'chair', price: 200 },
+  { name: 'joji', pname: 'pen', price: 5 },
+  { name: 'joji', pname: 'soap', price: 45 },
+  { name: 'joji', pname: 'mouse', price: 50 },
+  { name: 'joji', pname: 'pen', price: 10 },
+  { name: 'vidhu', pname: 'chair', price: 200 },
+  { name: 'vidhu', pname: 'pen', price: 5 },
+  { name: 'vidhu', pname: 'soap', price: 45 },
+  { name: 'vidhu', pname: 'mouse', price: 50 },
+  { name: 'vidhu', pname: 'pen', price: 10 }
+]
+
